@@ -5,6 +5,16 @@ import ProfileWrapper from './components/profile/ProfileWrapper.vue';
 import Profile from './components/profile/Profile.vue';
 import EditProfile from './components/profile/edit-profile/EditProfile.vue';
 
+import AddPublisher from './components/publisher/add-publisher/AddPublisher.vue';
+import PublisherWrapper from './components/publisher/PublisherWrapper.vue';
+import Publisher from './components/publisher/Publisher.vue';
+import EditPublisher from './components/publisher/edit-publisher/EditPublisher.vue';
+
+import AddClient from './components/client/add-client/AddClient.vue';
+import ClientWrapper from './components/client/ClientWrapper.vue';
+import Client from './components/client/Client.vue';
+import EditClient from './components/client/edit-client/EditClient.vue';
+
 
 export default [
 	{
@@ -45,6 +55,68 @@ export default [
 				path: '*',
 				redirect: {
 					name: 'profile'
+				}
+			}
+		]
+	},
+	{
+		path: '/publisher',
+		component: PublisherWrapper,
+		children: [
+			{
+				path: '',
+				name: 'publisher',
+				component: Publisher,
+				meta: {requiresAuth: true}
+			},
+			{
+				path: 'edit-publisher/:id',
+				name: 'publisher.editPublisher',
+				component: EditPublisher,
+				props: true,
+				meta: {requiresAuth: true}
+			},
+			{
+				path: 'add-publisher',
+				name: 'publisher.addPublisher',
+				component: AddPublisher,
+				meta: {requiresAuth: true}
+			},
+			{
+				path: '*',
+				redirect: {
+					name: 'publisher'
+				}
+			}
+		]
+	},
+	{
+		path: '/client',
+		component: ClientWrapper,
+		children: [
+			{
+				path: '',
+				name: 'client',
+				component: Client,
+				meta: {requiresAuth: true}
+			},
+			{
+				path: 'edit-client/:id',
+				name: 'client.editClient',
+				component: EditClient,
+				props: true,
+				meta: {requiresAuth: true}
+			},
+			{
+				path: 'add-client',
+				name: 'client.addClient',
+				component: AddClient,
+				meta: {requiresAuth: true}
+			},
+			{
+				path: '*',
+				redirect: {
+					name: 'client'
 				}
 			}
 		]

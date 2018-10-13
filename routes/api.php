@@ -18,4 +18,14 @@ Route::group(['middleware' => 'jwt.auth'], function()
     Route::get('user', 'UserController@show');
     Route::post('user/password/update', 'UserController@updatePassword');
     Route::post('user/profile/update', 'UserController@updateProfile');
+
+    Route::get('publisher/getAll','PublisherController@getAllPublisher');
+    Route::get('publisher/get/{id}','PublisherController@getPublisher');
+    Route::post('publisher/update','PublisherController@updatePublisher');
+    Route::post('publisher/add', 'PublisherController@addPublisher');
+
+    Route::get('client/getAll','ClientController@getAllClient');
+    Route::get('client/get/{id}','ClientController@getClient');
+    Route::post('client/update','ClientController@updateClient');
+    Route::post('client/add', 'ClientController@addClient');
 });

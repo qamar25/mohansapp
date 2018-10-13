@@ -17,6 +17,12 @@
 					<router-link v-show="isLoggedIn" :to="{name: 'profile'}" tag="li" class="nav-item" activeClass="active">
 						<a class="nav-link">Profile</a>
 					</router-link>
+					<router-link v-show="isLoggedIn" :to="{name: 'publisher'}" tag="li" class="nav-item" activeClass="active">
+						<a class="nav-link">Publisher</a>
+					</router-link>
+					<router-link v-show="isLoggedIn" :to="{name: 'client'}" tag="li" class="nav-item" activeClass="active">
+						<a class="nav-link">Client</a>
+					</router-link>
 					<li class="nav-item" v-show="isLoggedIn">
 						<a class="nav-link" href="#" @click.prevent="logout">Logout</a>
 					</li>
