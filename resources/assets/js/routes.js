@@ -15,6 +15,10 @@ import ClientWrapper from './components/client/ClientWrapper.vue';
 import Client from './components/client/Client.vue';
 import EditClient from './components/client/edit-client/EditClient.vue';
 
+import AddSurvey from './components/survey/add-survey/AddSurvey.vue';
+import SurveyWrapper from './components/survey/SurveyWrapper.vue';
+import Survey from './components/survey/Survey.vue';
+import EditSurvey from './components/survey/edit-survey/EditSurvey.vue';
 
 export default [
 	{
@@ -117,6 +121,38 @@ export default [
 				path: '*',
 				redirect: {
 					name: 'client'
+				}
+			}
+		]
+	},
+
+	{
+		path: '/survey',
+		component: SurveyWrapper,
+		children: [
+			{
+				path: '',
+				name: 'survey',
+				component: Survey,
+				meta: {requiresAuth: true}
+			},
+			{
+				path: 'edit-survey/:id',
+				name: 'survey.editSurvey',
+				component: EditSurvey,
+				props: true,
+				meta: {requiresAuth: true}
+			},
+			{
+				path: 'add-survey',
+				name: 'survey.addSurvey',
+				component: AddSurvey,
+				meta: {requiresAuth: true}
+			},
+			{
+				path: '*',
+				redirect: {
+					name: 'survey'
 				}
 			}
 		]
