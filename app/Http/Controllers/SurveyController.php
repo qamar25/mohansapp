@@ -7,71 +7,95 @@ use App\Survey;
 use App\SurveyPublisher;
 use Ramsey\Uuid\Uuid;
 
-class ClientController extends Controller
+class SurveyController extends Controller
 {
 	public function getSurvey(Request $request,$id)
 	{
-		$survey = Survey::find($id);
-
-		return response()->json(compact('survey'));
+		$survey = Survey::with('client')->find($id);
+		//with('survey')->with('publisher')->
+		$publishers = SurveyPublisher::where('survey_id',$id)->get();
+		
+		return response()->json(['survey' => compact('survey'), 'publishers' => $publishers] );
 	}
 
-	public function updateClient(Request $request)
+	public function updateSurvey(Request $request)
 	{
 		$id = $request->input('id');
 		
-		$client = Client::find($id);
+		$survey = Survey::find($id);
 		$rules = [
-			'name'         => 'required',
-			'email'        => 'required|email',
-			'phone_no'     => 'required',
-			'location'     => 'required',
-
+			'name'  => 'required',
+			'client'    => 'required',
+			'link'    => 'required'
 		];
 
 		$this->validate($request, $rules);
 		
-		$client->name = $request->input('name');
-		$client->location = $request->input('location');
-		$client->phone_no = $request->input('phone_no');
-		$client->email = $request->input('email');
-		$client->status = $request->input('status');
-		$client->save();
+		$survey->survey_name = $request->input('name');
+		$survey->client_id = $request->input('client');
+		$survey->link = $request->input('link');
+		$survey->status = 1;//$request->input('status');
+		$survey->save();
 
-		return response()->json(compact('client'));
+		SurveyPublisher::where('survey_id',$id)->delete();
+		$publishers = $request->input('publishers');
+        foreach ($publishers as $publisher) {
+        	$sp = SurveyPublisher::create([
+        		'survey_id'     => $survey->id,
+		        'publisher_id'  => $publisher['name'],
+		        'link1'         => $publisher['link1'],
+		        'link2'         => $publisher['link2'],
+		        'link3'         => $publisher['link3'],
+		        'status'        => 1,
+        	]);
+        	$sp->save();
+        }
+		return response()->json(compact('survey'));
 	}
 
 	public function addSurvey(Request $request)
 	{
 		$rules = [
-			'survey_name'  => 'required',
-			'client_id'    => 'required|email'
+			'name'  => 'required',
+			'client'    => 'required',
+			'link'    => 'required'
 		];
 
 		$this->validate($request, $rules);
 
 
-		echo $uuid1 = Uuid::uuid1();
-		print_r($request->input('publishers'));
-		die;
+		$uuid1 = Uuid::uuid1();
+		
 		$survey = Survey::create([
-            'survey_name'     => $request->input('survey_name'),
+            'survey_name'     => $request->input('name'),
             'survey_uuid'     => $uuid1,
-            'client_id'       => $request->input('client_id'),
+            'client_id'       => $request->input('client'),
+            'link'       => $request->input('link'),
             'status'          => 1,
         ]);
 
         $survey->save();
 
-
-
+        $publishers = $request->input('publishers');
+        foreach ($publishers as $publisher) {
+        	$sp = SurveyPublisher::create([
+        		'survey_id'     => $survey->id,
+		        'publisher_id'  => $publisher['name'],
+		        'link1'         => $publisher['link1'],
+		        'link2'         => $publisher['link2'],
+		        'link3'         => $publisher['link3'],
+		        'status'        => 1,
+        	]);
+        	$sp->save();
+        }
+	
 		return response()->json(compact('survey'));
 	}
 
-	public function getAllClient(Request $request)
+	public function getAllSurvey(Request $request)
 	{
-		$client = Client::all();
+		$survey = Survey::with('client')->get();
 
-		return response()->json(compact('client'));
+		return response()->json(compact('survey'));
 	}
 }

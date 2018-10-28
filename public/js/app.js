@@ -1140,7 +1140,12 @@ var api = {
 	getAllClient: apiDomain + '/client/getAll',
 	getClient: apiDomain + '/client/get',
 	updateClient: apiDomain + '/client/update',
-	addClient: apiDomain + '/client/add'
+	addClient: apiDomain + '/client/add',
+
+	getAllSurvey: apiDomain + '/survey/getAll',
+	getSurvey: apiDomain + '/survey/get',
+	updateSurvey: apiDomain + '/survey/update',
+	addSurvey: apiDomain + '/survey/add'
 };
 
 /***/ }),
@@ -34369,13 +34374,13 @@ var getters = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_client_Client_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_client_Client_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_client_edit_client_EditClient_vue__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_client_edit_client_EditClient_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_client_edit_client_EditClient_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_survey_add_survey_AddSurvey_vue__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_survey_add_survey_AddSurvey_vue__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_survey_add_survey_AddSurvey_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_survey_add_survey_AddSurvey_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_survey_SurveyWrapper_vue__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_survey_SurveyWrapper_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__components_survey_SurveyWrapper_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_survey_Survey_vue__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_survey_Survey_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__components_survey_Survey_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_survey_edit_survey_EditSurvey_vue__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_survey_edit_survey_EditSurvey_vue__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_survey_edit_survey_EditSurvey_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__components_survey_edit_survey_EditSurvey_vue__);
 
 
@@ -34593,11 +34598,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "jumbotron" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("p", { staticClass: "lead" }, [_vm._v("Laravel Sample APP")])
-    ])
+    _c("div", { staticClass: "jumbotron" }, [_vm._m(0)])
   ])
 }
 var staticRenderFns = [
@@ -34713,7 +34714,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		loginSuccess: function loginSuccess(data) {
 			__WEBPACK_IMPORTED_MODULE_1__helpers_jwt_token__["a" /* default */].setToken(data.token);
 			this.setAuthUser(data.user);
-			this.$router.push({ name: 'profile' });
+			this.$router.push({ name: 'client' });
 		}
 	})
 });
@@ -39033,12 +39034,944 @@ if (false) {
 }
 
 /***/ }),
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(113)
+/* template */
+var __vue_template__ = __webpack_require__(117)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/survey/add-survey/AddSurvey.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-97a9c780", Component.options)
+  } else {
+    hotAPI.reload("data-v-97a9c780", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddSurveyForm_vue__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddSurveyForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__AddSurveyForm_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	components: {
+		'add-survey-form': __WEBPACK_IMPORTED_MODULE_0__AddSurveyForm_vue___default.a
+	},
+	methods: {
+		updateSuccess: function updateSuccess() {
+			this.$router.push({ name: 'survey' });
+		}
+	}
+});
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(115)
+/* template */
+var __vue_template__ = __webpack_require__(116)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/survey/add-survey/AddSurveyForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7afc7724", Component.options)
+  } else {
+    hotAPI.reload("data-v-7afc7724", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 115 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(2);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			loading: false,
+			clients: [],
+			publishers: [],
+			form: {
+				name: '',
+				client: '',
+				link: '',
+				publishers: []
+			},
+			error: {
+				name: '',
+				client: '',
+				link: '',
+				publishers: []
+			}
+		};
+	},
+	mounted: function mounted() {
+		this.getClient();
+		this.getPublishers();
+	},
+
+	methods: {
+		backSurvey: function backSurvey() {
+			this.$emit('updateSuccess');
+		},
+		removePublishers: function removePublishers(key) {
+			this.form.publishers.splice(key, 1);
+		},
+		addPublishers: function addPublishers() {
+			var arr = {
+				'name': '',
+				'id': '',
+				'link1': '',
+				'link2': '',
+				'link3': ''
+			};
+			this.form.publishers.push(arr);
+		},
+		getClient: function getClient() {
+			var _this = this;
+
+			axios.get(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].getAllClient).then(function (res) {
+				var clients = res.data.client;
+				_this.clients = [];
+				clients.forEach(function (c) {
+					if (c.status == 1) {
+						_this.clients.push({ text: c.name, value: c.id });
+					}
+				});
+			});
+		},
+		getPublishers: function getPublishers() {
+			var _this2 = this;
+
+			axios.get(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].getAllPublisher).then(function (res) {
+				_this2.publishers = res.data.publisher;
+				var publishers = res.data.publisher;
+				_this2.publishers = [];
+				publishers.forEach(function (c) {
+					if (c.status == 1) {
+						_this2.publishers.push({ text: c.name, value: c.id });
+					}
+				});
+			});
+		},
+		addSurvey: function addSurvey() {
+			var _this3 = this;
+
+			var errorTrue = false;
+			if (!this.form.name) {
+				this.error.name = "Survey name is required.";
+				errorTrue = true;
+			}
+			if (!this.form.client) {
+				this.error.client = "Client is required.";
+				errorTrue = true;
+			}
+			if (!this.form.link) {
+				this.error.link = "Link is required.";
+				errorTrue = true;
+			}
+
+			this.form.publishers.forEach(function (pub, key) {
+				_this3.error.publishers[key] = {};
+				if (!pub.name) {
+					_this3.error.publishers[key].name = 'Name is required.';
+					errorTrue = true;
+				}
+				if (!pub.link1) {
+					_this3.error.publishers[key].link1 = 'Link 1 is required.';
+					errorTrue = true;
+				}
+				if (!pub.link2) {
+					_this3.error.publishers[key].link2 = 'Link 2 is required.';
+					errorTrue = true;
+				}
+				if (!pub.link1) {
+					_this3.error.publishers[key].link3 = 'Link 3 is required.';
+					errorTrue = true;
+				}
+			});
+			this.$forceUpdate();
+
+			if (errorTrue == true) {
+				return;
+			}
+			this.loading = true;
+			axios.post(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].addSurvey, this.form).then(function (res) {
+				_this3.loading = false;
+				_this3.$noty.success('Survey added successfully.');
+				_this3.$emit('updateSuccess');
+			}).catch(function (err) {
+				err.response.data.error && _this3.$noty.error(err.response.data.error);
+
+				err.response.data.errors ? _this3.setErrors(err.response.data.errors) : _this3.clearErrors();
+
+				_this3.loading = false;
+			});
+		},
+		setErrors: function setErrors(errors) {
+			this.error.name = errors.name ? errors.name[0] : null;
+			this.error.email = errors.email ? errors.email[0] : null;
+			this.error.phone_no = errors.phone_no ? errors.phone_no[0] : null;
+			this.error.location = errors.location ? errors.location[0] : null;
+		},
+		clearErrors: function clearErrors() {
+			this.error.name = null;
+			this.error.email = null;
+			this.error.phone_no = null;
+			this.error.location = null;
+		}
+	}
+});
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.addSurvey($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.name,
+                expression: "form.name"
+              }
+            ],
+            staticClass: "form-control",
+            class: { "is-invalid": _vm.error.name },
+            attrs: { type: "text", id: "name", disabled: _vm.loading },
+            domProps: { value: _vm.form.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "name", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.error.name,
+                  expression: "error.name"
+                }
+              ],
+              staticClass: "invalid-feedback"
+            },
+            [_vm._v(_vm._s(_vm.error.name))]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "client" } }, [_vm._v("Client")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.client,
+                  expression: "form.client"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.error.client },
+              attrs: { id: "client", disabled: _vm.loading },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.form,
+                    "client",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            _vm._l(_vm.clients, function(item) {
+              return _c("option", { domProps: { value: item.value } }, [
+                _vm._v(
+                  "\n\t\t            " + _vm._s(item.text) + "\n\t\t        "
+                )
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.error.client,
+                  expression: "error.client"
+                }
+              ],
+              staticClass: "invalid-feedback"
+            },
+            [_vm._v(_vm._s(_vm.error.client))]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "link" } }, [_vm._v("Link")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.link,
+                expression: "form.link"
+              }
+            ],
+            staticClass: "form-control",
+            class: { "is-invalid": _vm.error.link },
+            attrs: { type: "text", id: "link", disabled: _vm.loading },
+            domProps: { value: _vm.form.link },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "link", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.error.link,
+                  expression: "error.link"
+                }
+              ],
+              staticClass: "invalid-feedback"
+            },
+            [_vm._v(_vm._s(_vm.error.link))]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", { attrs: { for: "location" } }, [_vm._v("Publishers")]),
+            _vm._v(" "),
+            _vm._l(_vm.form.publishers, function(publisher, key) {
+              return _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "location" } }, [
+                      _vm._v("Name")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: publisher.name,
+                            expression: "publisher.name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid":
+                            _vm.error.publishers[key] &&
+                            _vm.error.publishers[key].name
+                        },
+                        attrs: { disabled: _vm.loading },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              publisher,
+                              "name",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      _vm._l(_vm.publishers, function(item) {
+                        return _c(
+                          "option",
+                          { domProps: { value: item.value } },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t            " +
+                                _vm._s(item.text) +
+                                "\n\t\t\t\t\t        "
+                            )
+                          ]
+                        )
+                      })
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              _vm.error.publishers[key] &&
+                              _vm.error.publishers[key].name,
+                            expression:
+                              "error.publishers[key] && error.publishers[key].name"
+                          }
+                        ],
+                        staticClass: "invalid-feedback"
+                      },
+                      [_vm._v("Publisher Name is required.")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "location" } }, [
+                      _vm._v("Link 1")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: publisher.link1,
+                          expression: "publisher.link1"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid":
+                          _vm.error.publishers[key] &&
+                          _vm.error.publishers[key].link1
+                      },
+                      attrs: { type: "text", disabled: _vm.loading },
+                      domProps: { value: publisher.link1 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(publisher, "link1", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              _vm.error.publishers[key] &&
+                              _vm.error.publishers[key].link1,
+                            expression:
+                              "error.publishers[key] && error.publishers[key].link1"
+                          }
+                        ],
+                        staticClass: "invalid-feedback"
+                      },
+                      [_vm._v("Link 1 is required.")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "location" } }, [
+                      _vm._v("Link 2")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: publisher.link2,
+                          expression: "publisher.link2"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid":
+                          _vm.error.publishers[key] &&
+                          _vm.error.publishers[key].link2
+                      },
+                      attrs: { type: "text", disabled: _vm.loading },
+                      domProps: { value: publisher.link2 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(publisher, "link2", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              _vm.error.publishers[key] &&
+                              _vm.error.publishers[key].link2,
+                            expression:
+                              "error.publishers[key] && error.publishers[key].link2"
+                          }
+                        ],
+                        staticClass: "invalid-feedback"
+                      },
+                      [_vm._v("Link 2 is required.")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "location" } }, [
+                      _vm._v("Link 3")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: publisher.link3,
+                          expression: "publisher.link3"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid":
+                          _vm.error.publishers[key] &&
+                          _vm.error.publishers[key].link3
+                      },
+                      attrs: { type: "text", disabled: _vm.loading },
+                      domProps: { value: publisher.link3 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(publisher, "link3", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              _vm.error.publishers[key] &&
+                              _vm.error.publishers[key].link3,
+                            expression:
+                              "error.publishers[key] && error.publishers[key].link3"
+                          }
+                        ],
+                        staticClass: "invalid-feedback"
+                      },
+                      [_vm._v("Link3 is required.")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        staticStyle: { "margin-top": "30px" },
+                        attrs: { type: "button", disabled: _vm.loading },
+                        on: {
+                          click: function($event) {
+                            _vm.removePublishers(key)
+                          }
+                        }
+                      },
+                      [_c("span", [_vm._v("X")])]
+                    )
+                  ])
+                ])
+              ])
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button", disabled: _vm.loading },
+                on: { click: _vm.addPublishers }
+              },
+              [_c("span", [_vm._v("Add Publisher")])]
+            )
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { type: "submit", disabled: _vm.loading }
+          },
+          [
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.loading,
+                    expression: "loading"
+                  }
+                ]
+              },
+              [_vm._v("Adding Survey")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: !_vm.loading,
+                    expression: "!loading"
+                  }
+                ]
+              },
+              [_vm._v("Add Survey")]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { type: "button", disabled: _vm.loading },
+            on: { click: _vm.backSurvey }
+          },
+          [_c("span", [_vm._v("Back")])]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7afc7724", module.exports)
+  }
+}
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", { staticClass: "mb-4" }, [_vm._v("Add Survey")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [_c("add-survey-form", { on: { updateSuccess: _vm.updateSuccess } })],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-97a9c780", module.exports)
+  }
+}
+
+/***/ }),
 /* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39229,10 +40162,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -39240,7 +40169,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			clients: []
+			surveys: []
 		};
 	},
 
@@ -39250,15 +40179,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		}
 	}),
 	mounted: function mounted() {
-		this.getAllClient();
+		this.getAllSurvey();
 	},
 
 	methods: {
-		getAllClient: function getAllClient() {
+		getAllSurvey: function getAllSurvey() {
 			var _this = this;
 
-			axios.get(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].getAllClient).then(function (res) {
-				_this.clients = res.data.client;
+			axios.get(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].getAllSurvey).then(function (res) {
+				_this.surveys = res.data.survey;
 			});
 		}
 	}
@@ -39296,26 +40225,22 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.clients, function(client) {
+            _vm._l(_vm.surveys, function(survey) {
               return _c("tr", [
                 _c("th", { attrs: { scope: "row" } }, [
-                  _vm._v(_vm._s(client.id))
+                  _vm._v(_vm._s(survey.id))
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(client.name))]),
+                _c("td", [_vm._v(_vm._s(survey.survey_name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(client.email))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(client.location))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(client.phone_no))]),
+                _c("td", [_vm._v(_vm._s(survey.client.name))]),
                 _vm._v(" "),
                 _c("td", [
                   _c(
                     "a",
                     {
                       staticClass: "nav-link ",
-                      attrs: { href: "/survey/edit-survey/" + client.id }
+                      attrs: { href: "/survey/edit-survey/" + survey.id }
                     },
                     [_vm._v("Edit")]
                   )
@@ -39340,11 +40265,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Location")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Phone Number")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Client")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
       ])
@@ -39361,12 +40282,962 @@ if (false) {
 }
 
 /***/ }),
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(125)
+/* template */
+var __vue_template__ = __webpack_require__(129)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/survey/edit-survey/EditSurvey.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-94bf2d78", Component.options)
+  } else {
+    hotAPI.reload("data-v-94bf2d78", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 125 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditSurveyForm_vue__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditSurveyForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__EditSurveyForm_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	components: {
+		'edit-survey-form': __WEBPACK_IMPORTED_MODULE_0__EditSurveyForm_vue___default.a
+	},
+	methods: {
+		updateSuccess: function updateSuccess() {
+			this.$router.push({ name: 'survey' });
+		}
+	}
+});
+
+/***/ }),
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(127)
+/* template */
+var __vue_template__ = __webpack_require__(128)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/survey/edit-survey/EditSurveyForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1188bbb0", Component.options)
+  } else {
+    hotAPI.reload("data-v-1188bbb0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 127 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(2);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			loading: false,
+			clients: [],
+			publishers: [],
+			form: {
+				name: '',
+				id: '',
+				client: '',
+				link: '',
+				publishers: []
+			},
+			error: {
+				name: '',
+				client: '',
+				link: '',
+				publishers: []
+			}
+		};
+	},
+	mounted: function mounted() {
+		this.getPublishers();
+		this.getClient();
+	},
+
+	methods: {
+		backSurvey: function backSurvey() {
+			this.$emit('updateSuccess');
+		},
+		removePublishers: function removePublishers(key) {
+			this.form.publishers.splice(key, 1);
+		},
+		addPublishers: function addPublishers() {
+			var arr = {
+				'name': '',
+				'id': '',
+				'link1': '',
+				'link2': '',
+				'link3': ''
+			};
+			this.form.publishers.push(arr);
+		},
+		getClient: function getClient() {
+			var _this = this;
+
+			axios.get(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].getAllClient).then(function (res) {
+				var clients = res.data.client;
+				_this.clients = [];
+				clients.forEach(function (c) {
+					if (c.status == 1) {
+						_this.clients.push({ text: c.name, value: c.id });
+					}
+				});
+
+				_this.getSurvey();
+			});
+		},
+		getPublishers: function getPublishers() {
+			var _this2 = this;
+
+			axios.get(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].getAllPublisher).then(function (res) {
+				_this2.publishers = res.data.publisher;
+				var publishers = res.data.publisher;
+				_this2.publishers = [];
+				publishers.forEach(function (c) {
+					if (c.status == 1) {
+						_this2.publishers.push({ text: c.name, value: c.id });
+					}
+				});
+			});
+		},
+		getSurvey: function getSurvey() {
+			var _this3 = this;
+
+			axios.get(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].getSurvey + '/' + this.$route.params.id).then(function (res) {
+				var data = res.data;
+				_this3.form = {
+					name: data.survey.survey.survey_name,
+					client: data.survey.survey.client_id,
+					id: data.survey.survey.id,
+					link: data.survey.survey.link,
+					publishers: []
+				};
+				if (data.publishers) {
+					data.publishers.forEach(function (pub) {
+						var arr = {
+							'name': pub.publisher_id,
+							'link1': pub.link1,
+							'link2': pub.link2,
+							'link3': pub.link3
+						};
+						_this3.form.publishers.push(arr);
+					});
+				}
+			});
+		},
+		updateSurvey: function updateSurvey() {
+			var _this4 = this;
+
+			var errorTrue = false;
+			if (!this.form.name) {
+				this.error.name = "Survey name is required.";
+				errorTrue = true;
+			}
+			if (!this.form.client) {
+				this.error.client = "Client is required.";
+				errorTrue = true;
+			}
+			if (!this.form.link) {
+				this.error.link = "Link is required.";
+				errorTrue = true;
+			}
+
+			this.form.publishers.forEach(function (pub, key) {
+				_this4.error.publishers[key] = {};
+				if (!pub.name) {
+					_this4.error.publishers[key].name = 'Name is required.';
+					errorTrue = true;
+				}
+				if (!pub.link1) {
+					_this4.error.publishers[key].link1 = 'Link 1 is required.';
+					errorTrue = true;
+				}
+				if (!pub.link2) {
+					_this4.error.publishers[key].link2 = 'Link 2 is required.';
+					errorTrue = true;
+				}
+				if (!pub.link1) {
+					_this4.error.publishers[key].link3 = 'Link 3 is required.';
+					errorTrue = true;
+				}
+			});
+			this.$forceUpdate();
+
+			if (errorTrue == true) {
+				return;
+			}
+			this.loading = true;
+			axios.post(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].updateSurvey, this.form).then(function (res) {
+				_this4.loading = false;
+				_this4.$noty.success('Survey Updated.');
+				_this4.$emit('updateSuccess', res.data);
+			}).catch(function (err) {
+				err.response.data.error && _this4.$noty.error(err.response.data.error);
+
+				err.response.data.errors ? _this4.setErrors(err.response.data.errors) : _this4.clearErrors();
+
+				_this4.loading = false;
+			});
+		},
+		setErrors: function setErrors(errors) {
+			this.error.name = errors.name ? errors.name[0] : null;
+			this.error.email = errors.email ? errors.email[0] : null;
+			this.error.phone_no = errors.phone_no ? errors.phone_no[0] : null;
+			this.error.location = errors.location ? errors.location[0] : null;
+		},
+		clearErrors: function clearErrors() {
+			this.error.name = null;
+			this.error.email = null;
+			this.error.phone_no = null;
+			this.error.location = null;
+		}
+	}
+});
+
+/***/ }),
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.updateSurvey($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.name,
+                expression: "form.name"
+              }
+            ],
+            staticClass: "form-control",
+            class: { "is-invalid": _vm.error.name },
+            attrs: { type: "text", id: "name", disabled: _vm.loading },
+            domProps: { value: _vm.form.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "name", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.error.name,
+                  expression: "error.name"
+                }
+              ],
+              staticClass: "invalid-feedback"
+            },
+            [_vm._v(_vm._s(_vm.error.name))]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "client" } }, [_vm._v("Client")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.client,
+                  expression: "form.client"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.error.client },
+              attrs: { id: "client", disabled: _vm.loading },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.form,
+                    "client",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            _vm._l(_vm.clients, function(item) {
+              return _c("option", { domProps: { value: item.value } }, [
+                _vm._v(
+                  "\n\t\t            " + _vm._s(item.text) + "\n\t\t        "
+                )
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.error.client,
+                  expression: "error.client"
+                }
+              ],
+              staticClass: "invalid-feedback"
+            },
+            [_vm._v(_vm._s(_vm.error.client))]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "link" } }, [_vm._v("Link")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.link,
+                expression: "form.link"
+              }
+            ],
+            staticClass: "form-control",
+            class: { "is-invalid": _vm.error.link },
+            attrs: { type: "text", id: "link", disabled: _vm.loading },
+            domProps: { value: _vm.form.link },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "link", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.error.link,
+                  expression: "error.link"
+                }
+              ],
+              staticClass: "invalid-feedback"
+            },
+            [_vm._v(_vm._s(_vm.error.link))]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", [_vm._v("Publishers")]),
+            _vm._v(" "),
+            _vm._l(_vm.form.publishers, function(publisher, key) {
+              return _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: publisher.name,
+                            expression: "publisher.name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid":
+                            _vm.error.publishers[key] &&
+                            _vm.error.publishers[key].name
+                        },
+                        attrs: { disabled: _vm.loading },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              publisher,
+                              "name",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      _vm._l(_vm.publishers, function(item) {
+                        return _c(
+                          "option",
+                          { domProps: { value: item.value } },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t            " +
+                                _vm._s(item.text) +
+                                "\n\t\t\t\t\t        "
+                            )
+                          ]
+                        )
+                      })
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              _vm.error.publishers[key] &&
+                              _vm.error.publishers[key].name,
+                            expression:
+                              "error.publishers[key] && error.publishers[key].name"
+                          }
+                        ],
+                        staticClass: "invalid-feedback"
+                      },
+                      [_vm._v("Publisher Name is required.")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Link 1")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: publisher.link1,
+                          expression: "publisher.link1"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid":
+                          _vm.error.publishers[key] &&
+                          _vm.error.publishers[key].link1
+                      },
+                      attrs: { type: "text", disabled: _vm.loading },
+                      domProps: { value: publisher.link1 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(publisher, "link1", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              _vm.error.publishers[key] &&
+                              _vm.error.publishers[key].link1,
+                            expression:
+                              "error.publishers[key] && error.publishers[key].link1"
+                          }
+                        ],
+                        staticClass: "invalid-feedback"
+                      },
+                      [_vm._v("Link 1 is required.")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Link 2")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: publisher.link2,
+                          expression: "publisher.link2"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid":
+                          _vm.error.publishers[key] &&
+                          _vm.error.publishers[key].link2
+                      },
+                      attrs: { type: "text", disabled: _vm.loading },
+                      domProps: { value: publisher.link2 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(publisher, "link2", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              _vm.error.publishers[key] &&
+                              _vm.error.publishers[key].link2,
+                            expression:
+                              "error.publishers[key] && error.publishers[key].link2"
+                          }
+                        ],
+                        staticClass: "invalid-feedback"
+                      },
+                      [_vm._v("Link 2 is required.")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Link 3")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: publisher.link3,
+                          expression: "publisher.link3"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid":
+                          _vm.error.publishers[key] &&
+                          _vm.error.publishers[key].link3
+                      },
+                      attrs: { type: "text", disabled: _vm.loading },
+                      domProps: { value: publisher.link3 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(publisher, "link3", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              _vm.error.publishers[key] &&
+                              _vm.error.publishers[key].link3,
+                            expression:
+                              "error.publishers[key] && error.publishers[key].link3"
+                          }
+                        ],
+                        staticClass: "invalid-feedback"
+                      },
+                      [_vm._v("Link3 is required.")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        staticStyle: { "margin-top": "30px" },
+                        attrs: { type: "button", disabled: _vm.loading },
+                        on: {
+                          click: function($event) {
+                            _vm.removePublishers(key)
+                          }
+                        }
+                      },
+                      [_c("span", [_vm._v("X")])]
+                    )
+                  ])
+                ])
+              ])
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button", disabled: _vm.loading },
+                on: { click: _vm.addPublishers }
+              },
+              [_c("span", [_vm._v("Add Publisher")])]
+            )
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { type: "submit", disabled: _vm.loading }
+          },
+          [
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.loading,
+                    expression: "loading"
+                  }
+                ]
+              },
+              [_vm._v("Updating Survey")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: !_vm.loading,
+                    expression: "!loading"
+                  }
+                ]
+              },
+              [_vm._v("Update Survey")]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { type: "button", disabled: _vm.loading },
+            on: { click: _vm.backSurvey }
+          },
+          [_c("span", [_vm._v("Back")])]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1188bbb0", module.exports)
+  }
+}
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", { staticClass: "mb-4" }, [_vm._v("Edit Survey")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [_c("edit-survey-form", { on: { updateSuccess: _vm.updateSuccess } })],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-94bf2d78", module.exports)
+  }
+}
+
+/***/ }),
 /* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39960,1104 +41831,6 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 140 */,
-/* 141 */,
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(146)
-/* template */
-var __vue_template__ = __webpack_require__(147)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/survey/add-survey/AddSurvey.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-97a9c780", Component.options)
-  } else {
-    hotAPI.reload("data-v-97a9c780", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 146 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddSurveyForm_vue__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddSurveyForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__AddSurveyForm_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	components: {
-		'add-survey-form': __WEBPACK_IMPORTED_MODULE_0__AddSurveyForm_vue___default.a
-	},
-	methods: {
-		updateSuccess: function updateSuccess() {
-			this.$router.push({ name: 'survey' });
-		}
-	}
-});
-
-/***/ }),
-/* 147 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticClass: "mb-4" }, [_vm._v("Add Survey")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _c(
-        "div",
-        { staticClass: "card-body" },
-        [_c("add-survey-form", { on: { updateSuccess: _vm.updateSuccess } })],
-        1
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-97a9c780", module.exports)
-  }
-}
-
-/***/ }),
-/* 148 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(149)
-/* template */
-var __vue_template__ = __webpack_require__(150)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/survey/edit-survey/EditSurvey.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-94bf2d78", Component.options)
-  } else {
-    hotAPI.reload("data-v-94bf2d78", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 149 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditSurveyForm_vue__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditSurveyForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__EditSurveyForm_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	components: {
-		'edit-survey-form': __WEBPACK_IMPORTED_MODULE_0__EditSurveyForm_vue___default.a
-	},
-	methods: {
-		updateSuccess: function updateSuccess() {
-			this.$router.push({ name: 'survey' });
-		}
-	}
-});
-
-/***/ }),
-/* 150 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticClass: "mb-4" }, [_vm._v("Edit Survey")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _c(
-        "div",
-        { staticClass: "card-body" },
-        [_c("edit-survey-form", { on: { updateSuccess: _vm.updateSuccess } })],
-        1
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-94bf2d78", module.exports)
-  }
-}
-
-/***/ }),
-/* 151 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(152)
-/* template */
-var __vue_template__ = __webpack_require__(153)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/survey/edit-survey/EditSurveyForm.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1188bbb0", Component.options)
-  } else {
-    hotAPI.reload("data-v-1188bbb0", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 152 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(2);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			loading: false,
-			form: {
-				name: '',
-				email: '',
-				phone_no: '',
-				location: ''
-			},
-			error: {
-				name: '',
-				email: '',
-				phone_no: '',
-				location: ''
-			}
-		};
-	},
-	mounted: function mounted() {
-		this.getSurvey();
-	},
-
-	methods: {
-		backSurvey: function backSurvey() {
-			this.$emit('updateSuccess');
-		},
-		getSurvey: function getSurvey() {
-			var _this = this;
-
-			axios.get(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].getClient + '/' + this.$route.params.id).then(function (res) {
-				_this.form = res.data.client;
-			});
-		},
-		updateSurvey: function updateSurvey() {
-			var _this2 = this;
-
-			this.loading = true;
-			axios.post(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].updateClient, this.form).then(function (res) {
-				_this2.loading = false;
-				_this2.$noty.success('Survey Updated.');
-				_this2.$emit('updateSuccess', res.data);
-			}).catch(function (err) {
-				err.response.data.error && _this2.$noty.error(err.response.data.error);
-
-				err.response.data.errors ? _this2.setErrors(err.response.data.errors) : _this2.clearErrors();
-
-				_this2.loading = false;
-			});
-		},
-		setErrors: function setErrors(errors) {
-			this.error.name = errors.name ? errors.name[0] : null;
-			this.error.email = errors.email ? errors.email[0] : null;
-			this.error.phone_no = errors.phone_no ? errors.phone_no[0] : null;
-			this.error.location = errors.location ? errors.location[0] : null;
-		},
-		clearErrors: function clearErrors() {
-			this.error.name = null;
-			this.error.email = null;
-			this.error.phone_no = null;
-			this.error.location = null;
-		}
-	}
-});
-
-/***/ }),
-/* 153 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            _vm.updateSurvey($event)
-          }
-        }
-      },
-      [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.name,
-                expression: "form.name"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": _vm.error.name },
-            attrs: { type: "text", id: "name", disabled: _vm.loading },
-            domProps: { value: _vm.form.name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "name", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.error.name,
-                  expression: "error.name"
-                }
-              ],
-              staticClass: "invalid-feedback"
-            },
-            [_vm._v(_vm._s(_vm.error.name))]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.email,
-                expression: "form.email"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": _vm.error.email },
-            attrs: { type: "email", id: "email", disabled: _vm.loading },
-            domProps: { value: _vm.form.email },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "email", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.error.email,
-                  expression: "error.email"
-                }
-              ],
-              staticClass: "invalid-feedback"
-            },
-            [_vm._v(_vm._s(_vm.error.email))]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "phone_no" } }, [_vm._v("Phone No.")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.phone_no,
-                expression: "form.phone_no"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": _vm.error.phone_no },
-            attrs: { type: "text", id: "phone_no", disabled: _vm.loading },
-            domProps: { value: _vm.form.phone_no },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "phone_no", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.error.phone_no,
-                  expression: "error.phone_no"
-                }
-              ],
-              staticClass: "invalid-feedback"
-            },
-            [_vm._v(_vm._s(_vm.error.phone_no))]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "location" } }, [_vm._v("Location")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.location,
-                expression: "form.location"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": _vm.error.location },
-            attrs: { type: "text", id: "location", disabled: _vm.loading },
-            domProps: { value: _vm.form.location },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "location", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.error.location,
-                  expression: "error.location"
-                }
-              ],
-              staticClass: "invalid-feedback"
-            },
-            [_vm._v(_vm._s(_vm.error.location))]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { type: "submit", disabled: _vm.loading }
-          },
-          [
-            _c(
-              "span",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.loading,
-                    expression: "loading"
-                  }
-                ]
-              },
-              [_vm._v("Updating Survey")]
-            ),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: !_vm.loading,
-                    expression: "!loading"
-                  }
-                ]
-              },
-              [_vm._v("Update Survey")]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { type: "button", disabled: _vm.loading },
-            on: { click: _vm.backSurvey }
-          },
-          [_c("span", [_vm._v("Back")])]
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1188bbb0", module.exports)
-  }
-}
-
-/***/ }),
-/* 154 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(155)
-/* template */
-var __vue_template__ = __webpack_require__(156)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/survey/add-survey/AddSurveyForm.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7afc7724", Component.options)
-  } else {
-    hotAPI.reload("data-v-7afc7724", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 155 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(2);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			loading: false,
-			form: {
-				name: '',
-				email: '',
-				phone_no: '',
-				location: ''
-			},
-			error: {
-				name: '',
-				email: '',
-				phone_no: '',
-				location: ''
-			}
-		};
-	},
-
-	methods: {
-		backSurvey: function backSurvey() {
-			this.$emit('updateSuccess');
-		},
-		addSurvey: function addSurvey() {
-			var _this = this;
-
-			this.loading = true;
-			axios.post(__WEBPACK_IMPORTED_MODULE_1__config__["a" /* api */].addClient, this.form).then(function (res) {
-				_this.loading = false;
-				_this.$noty.success('Survey added successfully.');
-				_this.$emit('updateSuccess');
-			}).catch(function (err) {
-				err.response.data.error && _this.$noty.error(err.response.data.error);
-
-				err.response.data.errors ? _this.setErrors(err.response.data.errors) : _this.clearErrors();
-
-				_this.loading = false;
-			});
-		},
-		setErrors: function setErrors(errors) {
-			this.error.name = errors.name ? errors.name[0] : null;
-			this.error.email = errors.email ? errors.email[0] : null;
-			this.error.phone_no = errors.phone_no ? errors.phone_no[0] : null;
-			this.error.location = errors.location ? errors.location[0] : null;
-		},
-		clearErrors: function clearErrors() {
-			this.error.name = null;
-			this.error.email = null;
-			this.error.phone_no = null;
-			this.error.location = null;
-		}
-	}
-});
-
-/***/ }),
-/* 156 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            _vm.addSurvey($event)
-          }
-        }
-      },
-      [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.name,
-                expression: "form.name"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": _vm.error.name },
-            attrs: { type: "text", id: "name", disabled: _vm.loading },
-            domProps: { value: _vm.form.name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "name", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.error.name,
-                  expression: "error.name"
-                }
-              ],
-              staticClass: "invalid-feedback"
-            },
-            [_vm._v(_vm._s(_vm.error.name))]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.email,
-                expression: "form.email"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": _vm.error.email },
-            attrs: { type: "email", id: "email", disabled: _vm.loading },
-            domProps: { value: _vm.form.email },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "email", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.error.email,
-                  expression: "error.email"
-                }
-              ],
-              staticClass: "invalid-feedback"
-            },
-            [_vm._v(_vm._s(_vm.error.email))]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "phone_no" } }, [_vm._v("Phone No.")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.phone_no,
-                expression: "form.phone_no"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": _vm.error.phone_no },
-            attrs: { type: "text", id: "phone_no", disabled: _vm.loading },
-            domProps: { value: _vm.form.phone_no },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "phone_no", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.error.phone_no,
-                  expression: "error.phone_no"
-                }
-              ],
-              staticClass: "invalid-feedback"
-            },
-            [_vm._v(_vm._s(_vm.error.phone_no))]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "location" } }, [_vm._v("Location")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.location,
-                expression: "form.location"
-              }
-            ],
-            staticClass: "form-control",
-            class: { "is-invalid": _vm.error.location },
-            attrs: { type: "text", id: "location", disabled: _vm.loading },
-            domProps: { value: _vm.form.location },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "location", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.error.location,
-                  expression: "error.location"
-                }
-              ],
-              staticClass: "invalid-feedback"
-            },
-            [_vm._v(_vm._s(_vm.error.location))]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { type: "submit", disabled: _vm.loading }
-          },
-          [
-            _c(
-              "span",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.loading,
-                    expression: "loading"
-                  }
-                ]
-              },
-              [_vm._v("Adding Survey")]
-            ),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: !_vm.loading,
-                    expression: "!loading"
-                  }
-                ]
-              },
-              [_vm._v("Add Survey")]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { type: "button", disabled: _vm.loading },
-            on: { click: _vm.backSurvey }
-          },
-          [_c("span", [_vm._v("Back")])]
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7afc7724", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

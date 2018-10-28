@@ -10,21 +10,17 @@
 			    <tr>
 			      <th scope="col">#</th>
 			      <th scope="col">Name</th>
-			      <th scope="col">Email</th>
-			      <th scope="col">Location</th>
-			      <th scope="col">Phone Number</th>
+			      <th scope="col">Client</th>
 			      <th scope="col">Action</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr v-for='client in clients'>
-			      <th scope="row">{{client.id}}</th>
-			      <td>{{client.name}}</td>
-			      <td>{{client.email}}</td>
-			      <td>{{client.location}}</td>
-			      <td>{{client.phone_no}}</td>
+			    <tr v-for='survey in surveys'>
+			      <th scope="row">{{survey.id}}</th>
+			      <td>{{survey.survey_name}}</td>
+			      <td>{{survey.client.name}}</td>
 			      <td>
-						<a :href="'/survey/edit-survey/'+client.id" class="nav-link " >Edit</a>
+						<a :href="'/survey/edit-survey/'+survey.id" class="nav-link " >Edit</a>
 			      </td>
 			    </tr>
 			  </tbody>
@@ -41,20 +37,20 @@
 	export default {
 		data() {
 			return {
-				clients : []
+				surveys : []
 			};
 		},
 		computed: mapState({
 			user: state => state.auth
 		}),
 		mounted() {
-			this.getAllClient();
+			this.getAllSurvey();
 		},
 		methods: {
-			getAllClient() {
-				axios.get(api.getAllClient)
+			getAllSurvey() {
+				axios.get(api.getAllSurvey)
 					.then((res) => {
-						this.clients = res.data.client;
+						this.surveys = res.data.survey;
 					})
 			}
 		}

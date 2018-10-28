@@ -36,7 +36,7 @@
 			loginSuccess(data) {
 				jwtToken.setToken(data.token);
 				this.setAuthUser(data.user);
-				this.$router.push({name: 'profile'});
+				this.$router.push({name: 'client'});
 			}
 		}
 	}

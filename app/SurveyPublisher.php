@@ -33,4 +33,24 @@ class SurveyPublisher extends Model
         'link3',
         'status',
     ];
+
+    /**
+     * A profile belongs to a survey.
+     *
+     * @return mixed
+     */
+    public function survey()
+    {
+        return $this->hasOne('App\Survey','id','survey_id');
+    }
+
+    /**
+     * A profile belongs to a publisher.
+     *
+     * @return mixed
+     */
+    public function publisher()
+    {
+        return $this->hasOne('App\Publisher','id','publisher_id');
+    }
 }

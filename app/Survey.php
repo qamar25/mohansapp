@@ -29,6 +29,17 @@ class Survey extends Model
         'survey_name',
         'survey_uuid',
         'client_id',
+        'link',
         'status',
     ];
+
+    /**
+     * A profile belongs to a client.
+     *
+     * @return mixed
+     */
+    public function client()
+    {
+        return $this->hasOne('App\Client','id','client_id');
+    }
 }

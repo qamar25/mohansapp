@@ -14,40 +14,93 @@
 				<div class="invalid-feedback" v-show="error.name">{{ error.name }}</div>
 			</div>
 			<div class="form-group">
-				<label for="email">Email</label>
-				<input
-					type="email"
-					class="form-control"
-					:class="{'is-invalid' : error.email}"
-					id="email"
-					v-model="form.email"
-					:disabled="loading"
-				/>
-				<div class="invalid-feedback" v-show="error.email">{{ error.email }}</div>
+				<label for="client">Client</label>
+				<select class="form-control" :class="{'is-invalid' : error.client}" id="client" v-model="form.client" :disabled="loading">
+			        <option v-for="item in clients" :value="item.value">
+			            {{item.text}}
+			        </option>
+			    </select>
+				<div class="invalid-feedback" v-show="error.client">{{ error.client }}</div>
 			</div>
 			<div class="form-group">
-				<label for="phone_no">Phone No.</label>
+				<label for="link">Link</label>
 				<input
 					type="text"
 					class="form-control"
-					:class="{'is-invalid' : error.phone_no}"
-					id="phone_no"
-					v-model="form.phone_no"
+					:class="{'is-invalid' : error.link}"
+					id="link"
+					v-model="form.link"
 					:disabled="loading"
 				/>
-				<div class="invalid-feedback" v-show="error.phone_no">{{ error.phone_no }}</div>
+				<div class="invalid-feedback" v-show="error.link">{{ error.link }}</div>
 			</div>
 			<div class="form-group">
-				<label for="location">Location</label>
-				<input
-					type="text"
-					class="form-control"
-					:class="{'is-invalid' : error.location}"
-					id="location"
-					v-model="form.location"
-					:disabled="loading"
-				/>
-				<div class="invalid-feedback" v-show="error.location">{{ error.location }}</div>
+				<label for="location">Publishers</label>
+				<div class='row'  v-for='(publisher,key) in form.publishers'>
+					<div class='col-md-2'>
+						<div class="form-group">
+							<label for="location">Name</label>
+							<select class="form-control"
+							 :class="{'is-invalid' : error.publishers[key] && error.publishers[key].name}"
+							 v-model="publisher.name" :disabled="loading">
+						        <option v-for="item in publishers" :value="item.value">
+						            {{item.text}}
+						        </option>
+						    </select>
+							<div class="invalid-feedback" v-show="error.publishers[key] && error.publishers[key].name">Publisher Name is required.</div>
+						</div>
+					</div>
+					<div class='col-md-3'>	
+						<div class="form-group">
+							<label for="location">Link 1</label>
+							<input
+								type="text"
+								class="form-control"
+								:class="{'is-invalid' : error.publishers[key] && error.publishers[key].link1}"
+								v-model="publisher.link1"
+								:disabled="loading"
+							/>
+							<div class="invalid-feedback" v-show="error.publishers[key] && error.publishers[key].link1">Link 1 is required.</div>
+						</div>
+					</div>
+					<div class='col-md-3'>	
+						<div class="form-group">
+							<label for="location">Link 2</label>
+							<input
+								type="text"
+								class="form-control"
+								:class="{'is-invalid' : error.publishers[key] && error.publishers[key].link2}"
+								v-model="publisher.link2"
+								:disabled="loading"
+							/>
+							<div class="invalid-feedback" v-show="error.publishers[key] && error.publishers[key].link2">Link 2 is required.</div>
+						</div>
+					</div>
+					<div class='col-md-3'>	
+						<div class="form-group">
+							<label for="location">Link 3</label>
+							<input
+								type="text"
+								class="form-control"
+								:class="{'is-invalid' : error.publishers[key] && error.publishers[key].link3}"
+								v-model="publisher.link3"
+								:disabled="loading"
+							/>
+							<div class="invalid-feedback" v-show="error.publishers[key] && error.publishers[key].link3">Link3 is required.</div>
+						</div>
+					</div>
+					<div class='col-md-1'>	
+						<div class="form-group">
+							<button type="button" style="margin-top: 30px;" @click='removePublishers(key)' class="btn btn-primary" :disabled="loading">
+								<span>X</span>
+							</button>
+						</div>	
+					</div>
+				</div>	
+
+				<button type="button" @click='addPublishers' class="btn btn-primary" :disabled="loading">
+					<span>Add Publisher</span>
+				</button>
 			</div>
 			
 
@@ -70,27 +123,110 @@
 		data() {
 			return {
 				loading: false,
+				clients: [],
+		        publishers: [],
 				form: {
 					name: '',
-					email: '',
-					phone_no:'',
-					location:''
+					client: '',
+					link:'',
+					publishers:[]
 				},
 				error: {
 					name: '',
-					email: '',
-					phone_no:'',
-					location:''
+					client: '',
+					link:'',
+					publishers:[]
 				}
 			}
+		},
+		mounted() {
+			this.getClient();
+			this.getPublishers();
 		},
 		methods: {
 			backSurvey() {
 				this.$emit('updateSuccess');
 			},
+			removePublishers(key) {
+				this.form.publishers.splice(key,1);
+			},
+			addPublishers() {
+				let arr = {
+							'name' : '',
+							'id' : '',
+							'link1' : '',
+							'link2' : '',
+							'link3' : '',
+						}
+				this.form.publishers.push(arr);
+			},
+			getClient() {
+				axios.get(api.getAllClient)
+					.then((res) => {
+						let clients = res.data.client;
+						this.clients = [];
+						clients.forEach(c => {
+							if(c.status == 1) {
+								this.clients.push({text: c.name, value: c.id });
+							}
+						})
+					})
+			},
+			getPublishers() {
+				axios.get(api.getAllPublisher)
+					.then((res) => {
+						this.publishers = res.data.publisher;
+						let publishers = res.data.publisher;
+						this.publishers = [];
+						publishers.forEach(c => {
+							if(c.status == 1) {
+								this.publishers.push({text: c.name, value: c.id });
+							}
+						})
+					})
+			},
 			addSurvey() {
+				let errorTrue = false;
+				if(!this.form.name) {
+					this.error.name = "Survey name is required."
+					errorTrue = true;
+				}
+				if(!this.form.client) {
+					this.error.client = "Client is required."
+					errorTrue = true;
+				}
+				if(!this.form.link) {
+					this.error.link = "Link is required."
+					errorTrue = true;
+				}
+
+				this.form.publishers.forEach((pub,key) => {
+					this.error.publishers[key] = {};
+					if(!pub.name) {
+						this.error.publishers[key].name = 'Name is required.';
+						errorTrue = true;
+					}
+					if(!pub.link1) {
+						this.error.publishers[key].link1 = 'Link 1 is required.';
+						errorTrue = true;
+					}
+					if(!pub.link2) {
+						this.error.publishers[key].link2 = 'Link 2 is required.';
+						errorTrue = true;
+					}
+					if(!pub.link1) {
+						this.error.publishers[key].link3 = 'Link 3 is required.';
+						errorTrue = true;
+					}
+
+				});
+				this.$forceUpdate();
+				
+				if(errorTrue == true) {
+					return;
+				}
 				this.loading = true;
-				axios.post(api.addClient, this.form)
+				axios.post(api.addSurvey, this.form)
 					.then((res) => {
 						this.loading = false;
 						this.$noty.success('Survey added successfully.');

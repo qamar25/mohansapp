@@ -18,6 +18,7 @@ class CreateSurveysTable extends Migration
             $table->string('survey_name');
             $table->string('survey_uuid');
             $table->string('client_id');
+            $table->string('link');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

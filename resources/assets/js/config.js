@@ -14,5 +14,10 @@ export const api = {
 	getAllClient : apiDomain + '/client/getAll',
 	getClient : apiDomain + '/client/get',
 	updateClient : apiDomain + '/client/update',
-	addClient : apiDomain + '/client/add'
+	addClient : apiDomain + '/client/add',
+	
+	getAllSurvey : apiDomain + '/survey/getAll',
+	getSurvey : apiDomain + '/survey/get',
+	updateSurvey : apiDomain + '/survey/update',
+	addSurvey : apiDomain + '/survey/add'
 };

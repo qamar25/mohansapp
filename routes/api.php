@@ -28,4 +28,11 @@ Route::group(['middleware' => 'jwt.auth'], function()
     Route::get('client/get/{id}','ClientController@getClient');
     Route::post('client/update','ClientController@updateClient');
     Route::post('client/add', 'ClientController@addClient');
+
+    Route::get('survey/getAll', 'SurveyController@getAllSurvey');
+    Route::get('survey/get/{id}','SurveyController@getSurvey');
+    Route::post('survey/update','SurveyController@updateSurvey');
+    Route::post('survey/add', 'SurveyController@addSurvey');
+    
+    
 });
