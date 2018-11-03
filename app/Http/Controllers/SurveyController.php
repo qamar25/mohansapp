@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Survey;
 use App\SurveyPublisher;
 use Ramsey\Uuid\Uuid;
+use Cookie;
+use Illuminate\Support\Facades\Redirect;
 
 class SurveyController extends Controller
 {
@@ -97,5 +99,25 @@ class SurveyController extends Controller
 		$survey = Survey::with('client')->get();
 
 		return response()->json(compact('survey'));
+	}
+
+	public function surveyStart(Request $request) {
+		// echo "Hello";
+
+		Cookie::queue('name', 'mohan', 60);
+		Cookie::queue('uid', 'mohan', 60);
+		
+		return Redirect::to('survey/track');
+	}
+
+	public function surveyTrack(Request $request) {
+		// echo "Hello";
+
+		
+		// Cookie::make('name', 'Mohan', 360);
+
+		echo $value = Cookie::get('name');
+		echo $value = Cookie::get('uid');
+		echo $value;
 	}
 }

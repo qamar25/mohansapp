@@ -11,6 +11,9 @@
 |
 */
 
+Route::any('survey/click','SurveyController@surveyStart');
+Route::any('survey/track','SurveyController@surveyTrack');
+
 Route::any('{all}', function () {
     return view('app');
 })->where(['all' => '.*']);
