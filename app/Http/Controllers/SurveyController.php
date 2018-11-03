@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Survey;
 use App\SurveyPublisher;
+use App\SurveyTracking;
 use Ramsey\Uuid\Uuid;
 use Cookie;
 use Illuminate\Support\Facades\Redirect;
@@ -67,10 +68,11 @@ class SurveyController extends Controller
 
 
 		$uuid1 = Uuid::uuid1();
-		
+		$uuid2 = Uuid::uuid1();
 		$survey = Survey::create([
             'survey_name'     => $request->input('name'),
             'survey_uuid'     => $uuid1,
+            'survey_cookie'   => $uuid2,
             'client_id'       => $request->input('client'),
             'link'       => $request->input('link'),
             'status'          => 1,
@@ -101,23 +103,92 @@ class SurveyController extends Controller
 		return response()->json(compact('survey'));
 	}
 
-	public function surveyStart(Request $request) {
-		// echo "Hello";
+	public function surveyStart(Request $request,$id) {
+		// survey intermediate - means we land on a survey page
+		// Here we will set cookies for a survey
+		$uid = $id;
+		$survey = Survey::where('survey_uuid',$uid)->first();
+		if(!empty($survey)) {
 
-		Cookie::queue('name', 'mohan', 60);
-		Cookie::queue('uid', 'mohan', 60);
+			$sid = $uid;
+			$pid = $request->input('pid');
+			//Genrate new user id;
+			$userid = rand(4000000,7000000);
+			$client_link = $survey->link;
+
+			$cookie_name = $survey->survey_cookie;
+			// save SID
+			Cookie::queue($cookie_name.'-sid', $sid, 60);
+			// save new UID
+			Cookie::queue($cookie_name.'-uid', $userid, 60);
+			if(! empty($pid)) {
+				// save publishers id - PID
+				Cookie::queue($cookie_name.'-pid', $pid, 60);
+			}
+
+			$useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
+			$userip = $_SERVER['REMOTE_ADDR'];
+			$userreferer = '';
+			if(!empty($_SERVER['HTTP_REFERER'])) {
+				$userreferer = $_SERVER['HTTP_REFERER'];
+			}
+			$current_time = date('Y-m-d H:i:s');
+
+			$st = SurveyTracking::create([
+	            'survey_id'          => $sid,
+	            'user_id'            => $userid,
+	            'publisher_id'       => $pid,
+	            'user_agent'         => $useragent,
+	            'user_ip'            => $userip,
+	            'user_referer'       => $userreferer,
+	            'landing_time'       => $current_time,
+	            'final_update_time'  => $current_time
+	        ]);
+
+	        $st->save();
+
+			return Redirect::to($client_link);
+		}
 		
+		// we will redirect on client page
 		return Redirect::to('survey/track');
 	}
 
-	public function surveyTrack(Request $request) {
-		// echo "Hello";
-
+	public function surveyTrack(Request $request,$id) {
+		$uid = $id;
+		$data = explode('-',$uid);
+		$sid = [];
+		foreach ($data as $key => $value) {
+			if($key == count($data)-1) {
+				$type = $value;
+			} else {
+				array_push($sid,$value);
+			}
+		}
+		$sid = implode('-', $sid);
 		
-		// Cookie::make('name', 'Mohan', 360);
+		$status = 1;
+		if($type == 'QF') {
+			$status = 3;
+		}else if($type == 'TM') {
+			$status = 2;
+		}
 
-		echo $value = Cookie::get('name');
-		echo $value = Cookie::get('uid');
-		echo $value;
+		$survey = Survey::where('survey_uuid',$sid)->first();
+		if(!empty($survey)) {
+			$cookie_name = $survey->survey_cookie;
+			$sid = Cookie::get($cookie_name.'-sid');
+			$user_id = Cookie::get($cookie_name.'-uid');
+			
+			
+
+			$st = SurveyTracking::where('survey_id',$sid)->where('user_id',$user_id)->first();
+			
+			$st->final_status = $status;
+			$st->final_update_time = $current_time = date('Y-m-d H:i:s');
+			$st->save();
+			return 'success';
+		}
+		
 	}
 }

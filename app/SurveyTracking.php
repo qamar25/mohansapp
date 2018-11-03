@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Survey extends Model
+class SurveyTracking extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'surveys';
+    protected $table = 'survey_trackings';
 
     /**
      * The attributes that are not mass assignable.
@@ -26,21 +26,14 @@ class Survey extends Model
      * @var array
      */
     protected $fillable = [
-        'survey_name',
-        'survey_uuid',
-        'survey_cookie',
-        'client_id',
-        'link',
-        'status',
+        'survey_id',
+        'user_id',
+        'publisher_id',
+        'user_agent',
+        'user_ip',
+        'user_referer',
+        'landing_time',
+        'final_status',
+        'final_update_time',
     ];
-
-    /**
-     * A profile belongs to a client.
-     *
-     * @return mixed
-     */
-    public function client()
-    {
-        return $this->hasOne('App\Client','id','client_id');
-    }
 }
